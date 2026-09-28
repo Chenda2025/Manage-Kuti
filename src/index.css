@@ -1,0 +1,181 @@
+@import "tailwindcss";
+
+@theme {
+  --font-khmer: "Battambang", "Khmer OS Battambang", serif;
+  --font-title: "Moul", "Khmer OS Muol", serif;
+  --color-ink: #2a1a12;
+  --color-muted: #7a5a48;
+  --color-cream: #f6efe4;
+  --color-paper: #fffdf8;
+  --color-saffron: #c45c14;
+  --color-gold: #d4a017;
+  --color-maroon: #4c1d12;
+  --color-line: #ead9c6;
+  --color-ok: #0f7b4c;
+  --color-warn: #b45309;
+  --color-danger: #b42318;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  touch-action: manipulation;
+}
+
+html,
+body,
+#root {
+  min-height: 100%;
+  min-height: 100dvh;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-khmer);
+  color: var(--color-ink);
+  background: var(--color-cream);
+  -webkit-font-smoothing: antialiased;
+}
+
+button,
+input,
+select,
+textarea {
+  font-family: inherit;
+  font-size: 16px;
+}
+
+button,
+a,
+[role="button"] {
+  -webkit-tap-highlight-color: transparent;
+}
+
+.font-title {
+  font-family: var(--font-title);
+  letter-spacing: 0.02em;
+}
+
+.safe-top {
+  padding-top: max(12px, env(safe-area-inset-top));
+}
+
+.safe-bottom {
+  padding-bottom: max(12px, env(safe-area-inset-bottom));
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes panel-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes room-row-in {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.rise {
+  animation: rise 0.3s ease both;
+}
+
+.settings-panel {
+  animation: panel-in 0.28s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.settings-tab {
+  transition:
+    color 0.2s ease,
+    background-color 0.2s ease,
+    box-shadow 0.2s ease,
+    transform 0.15s ease;
+}
+
+.settings-tab:active {
+  transform: scale(0.96);
+}
+
+.settings-room-row {
+  animation: room-row-in 0.32s cubic-bezier(0.22, 1, 0.36, 1) both;
+  transition:
+    border-color 0.2s ease,
+    background-color 0.2s ease,
+    transform 0.15s ease;
+}
+
+.settings-room-row:active {
+  transform: scale(0.99);
+}
+
+.settings-press {
+  transition: transform 0.15s ease, opacity 0.15s ease;
+}
+
+.settings-press:active:not(:disabled) {
+  transform: scale(0.97);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rise,
+  .settings-panel,
+  .settings-room-row {
+    animation: none;
+  }
+
+  .settings-tab,
+  .settings-room-row,
+  .settings-press {
+    transition: none;
+  }
+
+  .settings-tab:active,
+  .settings-room-row:active,
+  .settings-press:active:not(:disabled) {
+    transform: none;
+  }
+}
+
+.login-pattern {
+  background-image:
+    radial-gradient(circle at 20% 20%, rgba(212, 160, 23, 0.16), transparent 28%),
+    radial-gradient(circle at 80% 10%, rgba(196, 92, 20, 0.18), transparent 32%),
+    linear-gradient(180deg, #5a2416 0%, #3a140c 55%, #2a0f09 100%);
+}
+
+.login-ornament {
+  height: 10px;
+  background:
+    radial-gradient(circle at 50% 50%, #f3c16b 0 2px, transparent 2.4px) 0 0 / 18px 10px,
+    linear-gradient(#d4a017, #d4a017) 0 50% / 100% 1px no-repeat;
+}
