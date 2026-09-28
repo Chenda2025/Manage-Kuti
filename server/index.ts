@@ -1531,7 +1531,7 @@ if (existsSync(path.join(distDir, 'index.html'))) {
   console.log('Serving frontend from ./dist')
 }
 
-const port = Number(process.env.API_PORT || 8787)
+const port = Number(process.env.PORT || process.env.API_PORT || 8787)
 serve({ fetch: app.fetch, port, hostname: '0.0.0.0' }, () => {
   console.log(`Kuti API running on http://127.0.0.1:${port}`)
   startTelegramPolling()
