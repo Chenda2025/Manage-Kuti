@@ -1,0 +1,16 @@
+node_modules
+dist
+uploads
+.git
+.cursor
+.env
+.env.*
+!.env.example
+*.local
+.DS_Store
+tsconfig.tsbuildinfo
+README.md
+**/*.md
+agent-transcripts
+.vscode
+.idea
