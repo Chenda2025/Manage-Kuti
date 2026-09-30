@@ -9,6 +9,7 @@ uploads
 *.local
 .DS_Store
 tsconfig.tsbuildinfo
+npm-debug.log*
 README.md
 **/*.md
 agent-transcripts
