@@ -13,6 +13,7 @@ description: >-
 
 - Each attendance type has its **own** mark form, layout, and excuse sheet — **not** shared copies of each other.
 - Locked distinct types so far:
+  - **វត្តមាន hub** seeds all 8 types (ទៅរៀន → វត្តមានរៀនក្នុងកុដិ) via `DEFAULT_ATTENDANCE_TYPE_DEFS` + `ensureDefaultSettings` merge on deploy
   - **ទៅរៀន** (`study`) — **not** the same as វត្តមានរៀនក្នុងកុដិ; compact excuse (ព្រឹក/រសៀល) + **multi-day date range** (hides periods when >1 day); no 2h clear countdown; own data key
   - **វត្តមានរៀនក្នុងកុដិ** (`type_mul2fl2z` / `STUDY_IN_KUTI_TYPE_KEY`) — mark-page customizations only (excuse sheet UI **locked** — do not change unless asked); once daily; multi-day date range + reason; education meta; report **ថ្ងៃនេះ** = mark-day lists only; **2h after save** clear absent + same-day permission; ceremonial daily text (`ចេញរៀន`, Khmer date/counts, name|reason|room); **never** share UI/data with seed `study`
   - **ការងារកុដិ** (`kuti_work`) — finished for now

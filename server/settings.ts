@@ -199,6 +199,51 @@ export async function ensureDefaultSettings() {
     }
   }
 
+  // Ensure full hub type list (សាលាឆាន់ / ចាត់លោកទៅបុណ្យ / វត្តមានរៀនក្នុងកុដិ …)
+  try {
+    const typesSettings = await getSetting('attendance_types')
+    const items = Array.isArray(typesSettings.items) ? [...typesSettings.items] : []
+    const existing = new Set(items.map((item) => item.key))
+    let typesChanged = false
+    for (const def of DEFAULT_ATTENDANCE_TYPE_DEFS) {
+      if (existing.has(def.key)) continue
+      items.push({ key: def.key, label: def.label, enabled: def.enabled })
+      existing.add(def.key)
+      typesChanged = true
+    }
+    if (typesChanged) {
+      await setSetting('attendance_types', { items })
+    }
+
+    const formats = await getSetting('attendance_text_formats')
+    const reminders = await getSetting('attendance_reminders')
+    const seededFormats = defaultFormats(items)
+    const seededReminders = defaultReminders(items)
+    let formatsChanged = false
+    let remindersChanged = false
+    for (const item of items) {
+      if (!formats.daily[item.key]) {
+        formats.daily[item.key] = seededFormats.daily[item.key]
+        formatsChanged = true
+      }
+      if (!formats.report[item.key]) {
+        formats.report[item.key] = seededFormats.report[item.key]
+        formatsChanged = true
+      }
+      if (!reminders.items.some((r) => r.type === item.key)) {
+        const seed = seededReminders.items.find((r) => r.type === item.key)
+        if (seed) {
+          reminders.items.push(seed)
+          remindersChanged = true
+        }
+      }
+    }
+    if (formatsChanged) await setSetting('attendance_text_formats', formats)
+    if (remindersChanged) await setSetting('attendance_reminders', reminders)
+  } catch {
+    // settings table may not be ready yet
+  }
+
   // Refresh daily message template to the ceremonial study report format
   try {
     const formats = await getSetting('attendance_text_formats')

@@ -4,6 +4,9 @@ export const DEFAULT_ATTENDANCE_TYPE_DEFS = [
   { key: 'trash', label: 'យកធុងសម្រាម', enabled: true },
   { key: 'worship_meal', label: 'ថ្វាយបង្គំ', enabled: true },
   { key: 'alms', label: 'បិណ្ឌបាត', enabled: true },
+  { key: 'type_mu9vvfdt', label: 'សាលាឆាន់', enabled: true },
+  { key: 'type_mubb78mp', label: 'ចាត់លោកទៅបុណ្យ', enabled: true },
+  { key: 'type_mul2fl2z', label: 'វត្តមានរៀនក្នុងកុដិ', enabled: true },
 ] as const
 
 /** @deprecated use string keys from settings; kept for default seed labels */
